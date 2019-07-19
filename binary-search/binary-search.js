@@ -1,9 +1,37 @@
-'use strict';
+"use strict";
 
 // Complete this algo
-const binarySearch = (array, target) => {
-	
-};
+function binarySearch(array, target, lowerPointer, upperPointer) {
+  if (!lowerPointer) {
+    lowerPointer = 0;
+  }
+  if (!upperPointer) {
+    upperPointer = array.length;
+  }
+  const midpoint = Math.floor((lowerPointer + upperPointer) / 2);
+  if (array[midpoint] === target) {
+    console.log(midpoint, "here we are");
+    return true;
+  }
+  console.log(midpoint);
+  if (midpoint === lowerPointer) {
+    return false;
+  }
+  if (midpoint === upperPointer) {
+    return false;
+  }
+
+  if (array[midpoint] < target) {
+    lowerPointer = midpoint;
+    return binarySearch(array, target, lowerPointer, upperPointer);
+  }
+
+  if (array[midpoint] > target) {
+    upperPointer = midpoint;
+    return binarySearch(array, target, lowerPointer, upperPointer);
+  }
+  // return binarySearch()
+}
 
 /*
 	EXTRA CREDIT:
@@ -14,4 +42,4 @@ const binarySearch = (array, target) => {
 
 */
 
-module.exports = binarySearch
+module.exports = binarySearch;
